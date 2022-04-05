@@ -1,2 +1,25 @@
-# scclusteval_subsampling
-Snakemake pipeline for preprocessing scRNA-seq datasets
+#! Про запуск снейка:
+#1.активация snakemake env если не активирована командой:
+# source activate /nfs/home/rasmirnov/miniconda3/envs/snakemake
+#2.запустить dry run of Snakefile командой: snakemake -j 20
+
+#! Про Error:
+# при сухом запуске (snakemake -n) все нормально, но при реальном - ошибка в первом руле,
+# точнее в запуске 1го скрипта(preprocess) из первого рула
+# когда я редактировал этот скрипт я закоментил строчку с 'PreprocessSubsetData_pars', тк
+# она вроде не нужна (эти параметры из конфиг файла я просто поставил по-дефолту в ф-ю PreprocessSubsetData)
+# но возможно, это как-то повлияло
+# Ошибка в is.data.frame(x) :
+#   попытка получить слот "meta.data" из объекта базового класса ("function") без слотов
+# Вызовы: eval ... PreprocessSubsetData -> %>% -> colnames -> is.data.frame
+## сейчас думаю, что нам вообще этот степ не нужен, тк датасет уже предобработан (но для будущего так-то можно)
+
+#! Про структуру файлов:
+#1.00log - логи(отчеты от снейка)
+#2.config.yaml - параметры для запуска
+#3.env - версии серата и r, которые использовались при создании тула
+#4.1.scripts/preprocess.R - предобработка и кластеризация полного датасета при всех резолюшенах
+#4.1.scripts/gather_fullsample.R  - собирает все возможные кластеры в один датасет
+#4.1.scripts/sabsample.R - сабсамплит full_dataset(e.g takes 80% клеток) и делает кластеринг n раз
+#4.1.scripts/gather_subsample.R - миксует все кластера и собирает их в кучу. потом он снова рекластеризует их
+

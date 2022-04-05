@@ -1,0 +1,10 @@
+input_seurat: "/mnt/tank/scratch/rasmirnov/code/jac_index/data/pbmc3k/pbmc3k_seurat.RData"
+subsample_rate: 0.8
+num_of_subsample: 100
+# since I didn't change the k.param in FindClusters, I put the default k.param = 30 here
+subsample_ks: "30"
+subsample_resolutions: "0.05 0.1 0.2 0.4 0.6 0.8 1 1.5 2 5"
+## number of PCs to use, pc.use 
+subsample_pcs: "50"
+rscript: '/scratch/opt/R/4.0.5/bin/Rscript'
+PreprocessSubsetData_subsample_pars: "variable.features.n = 3000, num.pc = 150, workers = 8, score.thresh = 1e-5, n.start = 100, nn.eps = 0"
