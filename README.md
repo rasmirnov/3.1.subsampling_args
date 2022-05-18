@@ -1,4 +1,4 @@
-Designed for the subsampling of integrated Seurat objects.
+Designed for the subsampling of simple not integrated Seurat objects.
 
 Possible way to run:
 1) activate snakemake enviroment
